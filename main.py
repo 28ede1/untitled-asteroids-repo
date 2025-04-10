@@ -812,7 +812,7 @@ class SpaceGame:
 
         while not pyray.window_should_close() and not self.should_exit_menu_status():
             pyray.begin_drawing()
-            pyray.clear_background((0,0,0,0))
+            pyray.clear_background((0,0,0,255))
 
             # This current_state is used to determine what new menu to now run
             current_state = self._menu._menu_state_stack.top()
