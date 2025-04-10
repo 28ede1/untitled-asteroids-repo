@@ -897,7 +897,6 @@ class SpaceGame:
         pyray.close_window()
 
 
-# Fix file save/load system and game is done
 if __name__ == "__main__":
     game_test = SpaceGame()
     game_test.run_optimized()
