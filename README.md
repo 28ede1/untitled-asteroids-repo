@@ -5,20 +5,20 @@ A retro-styled Asteroids game clone where you survive as long as possible avoidi
 ## Prequisities/Libraries needed
 
 * Knowledge of Object-Oriented Programming, Inheritance, File Processing, Data Strutures, and Game-Loop logic
-* Raylib package installed on your computer 
-* Python (installed with pip module)
-* WeatherApi (https://rapidapi.com/oktamovshohjahon/api/weather-api138/playground/apiendpoint_acb2971f-25d4-4a29-b5d6-87b9f3f8131b)
 * Knowledge of utilizing API's
-* Requests module installed
-  
+* WeatherApi (https://rapidapi.com/oktamovshohjahon/api/weather-api138/playground/apiendpoint_acb2971f-25d4-4a29-b5d6-87b9f3f8131b)
+* Python install with pip package
+* pyray, raylib, pygbag, requests libraries installed
+* Dependencies: cffi, pycparser, idna, certifi, urllib3, charset-normalizer 
+
 
 ## To run the program in your terminal:
 
-1. Installed Python if it is not already installed
+1. Install Python (with pip included) if it is not already installed
 
    * You can type, python --version, in terminal to see the version number if it exists. 
 
-2. Install the raylib package (installing raylib installs the raylib/pyray modules). 
+2. Install the raylib package (installing raylib should install the raylib/pyray modules). 
 
    * pip install raylib
      
@@ -26,14 +26,14 @@ A retro-styled Asteroids game clone where you survive as long as possible avoidi
 
    * pip install requests
 
-5. Git clone this repository
+4. Git clone this repository
 
-6. In the WeatherApi.py get_city_temp_wsp() method, replace url and headers with your API information
+5. In the WeatherApi.py get_city_temp_wsp() method, replace url and headers with your API information
 
    * Make sure you are subscribed to the api
    * The header containing the key and host, can be pasted from here, as well as the url
      
-7. Inside the folder top folder (ex: untitled_asteroids_repository) type, 
+6. Inside the folder top folder (ex: untitled_asteroids_repository) type, 
    * python Game.py
 
 ## Core Gameplay
