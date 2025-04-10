@@ -11,7 +11,7 @@ A retro-styled Asteroids game clone where you survive as long as possible avoidi
   * pyray, raylib, pygbag, requests libraries installed
   * Dependencies: cffi, pycparser, idna, certifi, urllib3, charset-normalizer
   
-## To run the program via web browser: 
+## To play the game via web browser: 
 
   (Note: Work in progess, expect bugs with the screen display*)
   
@@ -66,6 +66,10 @@ https://rapidapi.com/oktamovshohjahon/api/weather-api138/playground/apiendpoint_
 
 A weather API collects temperature and wind speed information for a city entered by the player through the Difficulty button in the options menu. The temperature is used to modify the distribution of asteroid types, simulating weather-impact on asteroid spawning. The wind speed influences the default speed at which asteroids spawn.
 
+## Weather Api (mock version)
+
+As of 4/10/2025, the import requests module is not compatible for pgybag, the library used for running the python code in browser. So, a seperate class with a custom get method selects a US states temperature and wind speed information from a dictionary. The temperature and windspeed work the same.
+
 #### Save/Load Feature
 
 The game includes a save/load feature that allows players to save their difficulty settings (temperature and wind speed). This ensures that the game will remember the player's last difficulty configuration when resumed. The player can also click a button in settings to reset data to a fresh save file.
@@ -91,7 +95,6 @@ Upon death, the player’s time survived and points are recorded in a leaderboar
 ![Image](https://github.com/user-attachments/assets/b6ba0ef1-a3fa-4aff-9524-1819eda80059)
 ![Image](https://github.com/user-attachments/assets/1cf8714f-59b4-48a7-bbb5-30f066ed14e5)
 
-
 ## Author's Notes
 
 ### Purpose
@@ -104,8 +107,14 @@ Upon death, the player’s time survived and points are recorded in a leaderboar
 The codebase is organized into several modules:
 
   * Game.py handles game mechanics, difficulty, traversing menu screens
+    This version is used for running the game via terminal.
+  * main.py handles game mechanics, difficulty, traversing menu screens
+    This version is used for running the game in browser.
+    main.py will use a "mock" version of the weather get request, since the Api used    
+    for this project doesn't work as indended for main.py
   * Sprites.py contains classes for game entities
-  * WeatherApi.py handles API calls for weather data
+  * WeatherApi.py handles API calls for weather data (used by game.py)
+  * WeatherApiFake.py handles getting a US states weather data (used by main.py)
   * MyTimer.py handles timers used for various game/player mechanics
   * Assets.py manages the loading of textures (including sound, music)
   * Settings.py has constants used by the other python files
@@ -113,8 +122,7 @@ The codebase is organized into several modules:
   * Menu
   * DoublyLinkedStack.py is the data structure used for menu traversal
   * InputBox.py handles a text input box used for city selection
-  * main.py (version used for running the web game version)
-    main.py will use a "mock" version of the weather get request, since the Api used for this project doesn't work as indended for main.py
+  
 
 ### Design process
 
@@ -125,6 +133,7 @@ The codebase is organized into several modules:
   * Implemented a button that allowed the user to change the city being selected, thereby changed the game's difficulty
   * Created a Save/Load file system to save leaderboard information and city data for when the game is ran again.
   * Figured out how to deploy a web version of the game on github
+  * Created a WeatherApiFake class for handling weather input for a city for the browser version of the game run with main.py
   
 ### Challenges
 
@@ -168,13 +177,13 @@ The codebase is organized into several modules:
    * python Game.py
    * or type python3 Game.py
   
-For deploying a version of the game:
+For deploying a version a game in browser (for future reference only:
 
 1. Have a main.py file at the top directory of the folder.
 2. Import sys, Import asyncio at the top of the file
 3. Find the main game loop function. Make it an async function by 1. adding async before the def keyword and 2. adding await asyncio.sleep(0) after the .enddrawing() method (or similar counter part) inside the while loop
 4. Last line of the main.py file should be asyncio.run(SpaceGame().run_optimized()). Nothing should come after this.
-5. Like in the WeatherApi.py file, if there is an import requests, this will cause an error. Replace with,
+5. Like in the WeatherApi.py file, if there is an import requests, this will cause an error. Replace with
    
 import sys
 
@@ -224,6 +233,5 @@ Pixabay Content License (https://pixabay.com/service/license-summary/):
 ## Known Issues/Features to add
 
 * BUG: game freezes for a bit when choosing a new city for the first time. Likely to do with the Weather API. (When ran using python Game.py)
-* FEATURE: implement a different difficulty selection system for main.py (for running the game via browser) that uses a very large dictionary to select difficulty rather than using a get request for the weather api
 * BUG: Screen sizing and mouse cursor position is off (depending on device) when running the web version
 * FEATURE: implement a save/load file system somehow for the web version
