@@ -4,7 +4,6 @@ import sys
 if sys.platform not in ("emscripten", "wasi"):
     import requests
 
-import requests
 
 """
 This API parses data from a weather information database. This implementation specifically retreives 
@@ -30,9 +29,9 @@ def get_city_temp_wspd(city):
     Converts temperature from Kelvin to Fahrenheit and returns wind speed.
     """
 
-    url = "REPLACE ME"
-    headers = "REPLACE ME"
-
+    url= "REPLACE ME"
+    headers= "REPLACE ME"
+    
     # Use the city name in the querystring to fetch relevant weather data
     querystring = {"city_name": city}
     response = requests.get(url, headers=headers, params=querystring)
