@@ -11,7 +11,9 @@ A retro-styled Asteroids game clone where you survive as long as possible avoidi
 * pyray, raylib, pygbag, requests libraries installed
 * Dependencies: cffi, pycparser, idna, certifi, urllib3, charset-normalizer
   
-## To run the program via web browser: (Note: Work in progess, expect bugs with the screen display*)
+## To run the program via web browser: 
+
+### (Note: Work in progess, expect bugs with the screen display*)
 
   Click here: https://28ede1.github.io/untitled-asteroids-repo/
   
