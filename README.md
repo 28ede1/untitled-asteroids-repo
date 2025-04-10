@@ -114,6 +114,7 @@ The codebase is organized into several modules:
   * DoublyLinkedStack.py is the data structure used for menu traversal
   * InputBox.py handles a text input box used for city selection
   * main.py (version used for running the web game version)
+    main.py will use a "mock" version of the weather get request, since the Api used for this project doesn't work as indended for main.py
 
 ### Design process
 
@@ -123,6 +124,7 @@ The codebase is organized into several modules:
   * Implemented API for gathering temperature and wind speed of a city, in order to be used for the difficulty system
   * Implemented a button that allowed the user to change the city being selected, thereby changed the game's difficulty
   * Created a Save/Load file system to save leaderboard information and city data for when the game is ran again.
+  * Figured out how to deploy a web version of the game on github
   
 ### Challenges
 
