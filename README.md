@@ -72,7 +72,7 @@ The game includes a save/load feature that allows players to save their difficul
 
 #### Leaderboard
 
-Upon death, the player’s time survived and points are recorded in a leaderboard, which tracks the top 5 players. This leaderboard allows players to compete for the highest scores and longest survival times.
+Upon death, the player’s time survived and points are recorded in a leaderboard, which tracks the top 5 scores.
 
 ## Game Controls
 
