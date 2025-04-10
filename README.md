@@ -4,17 +4,17 @@ A retro-styled Asteroids game clone where you survive as long as possible avoidi
 
 ## Prequisities/Libraries needed
 
-* Knowledge of Object-Oriented Programming, Inheritance, File Processing, Data Strutures, and Game-Loop logic
-* Knowledge of utilizing API's
-* WeatherApi (https://rapidapi.com/oktamovshohjahon/api/weather-api138/playground/apiendpoint_acb2971f-25d4-4a29-b5d6-87b9f3f8131b)
-* Python install with pip package
-* pyray, raylib, pygbag, requests libraries installed
-* Dependencies: cffi, pycparser, idna, certifi, urllib3, charset-normalizer
+  * Knowledge of Object-Oriented Programming, Inheritance, File Processing, Data Strutures, and Game-Loop logic
+  * Knowledge of utilizing API's
+  * WeatherApi (https://rapidapi.com/oktamovshohjahon/api/weather-api138/playground/apiendpoint_acb2971f-25d4-4a29-b5d6-87b9f3f8131b)
+  * Python install with pip package
+  * pyray, raylib, pygbag, requests libraries installed
+  * Dependencies: cffi, pycparser, idna, certifi, urllib3, charset-normalizer
   
 ## To run the program via web browser: 
 
-### (Note: Work in progess, expect bugs with the screen display*)
-
+  (Note: Work in progess, expect bugs with the screen display*)
+  
   Click here: https://28ede1.github.io/untitled-asteroids-repo/
   
 ## To run the program in your terminal:
@@ -76,8 +76,8 @@ Upon death, the player’s time survived and points are recorded in a leaderboar
 
 ## Game Controls
 
-* Move Player - Arrow Keys
-* Shoot Asteroid - Spacebar
+  * Move Player - Arrow Keys
+  * Shoot Asteroid - Spacebar
 
 ## ScreenShots/Video
 
@@ -94,42 +94,43 @@ Gameplay Demo above.
 
 ### Purpose
 
-* To practice implementing a data structure in a practical use case (Ex: Using a stack to implement a menu screen and button navigation system efficiently)
-* To Practice with complex OOP and structuring a complex program in a reasonable way way
-* To understand and appreciate the basic intricacies of what goes into game development
-  
+  * To practice implementing a data structure in a practical use case (Ex: Using a stack to implement a menu screen and button navigation system efficiently)
+  * To Practice with complex OOP and structuring a complex program in a reasonable way way
+  * To understand and appreciate the basic intricacies of what goes into game development
+    
 ### Project Structure
 The codebase is organized into several modules:
 
-* Game.py handles game mechanics, difficulty, traversing menu screens
-* Sprites.py contains classes for game entities
-* WeatherApi.py handles API calls for weather data
-* MyTimer.py handles timers used for various game/player mechanics
-* Assets.py manages the loading of textures (including sound, music)
-* Settings.py has constants used by the other python files
-* GameSaver.py handles game saving/loading/erasing of player data
-* Menu
-* DoublyLinkedStack.py is the data structure used for menu traversal
-* InputBox.py handles a text input box used for city selection
+  * Game.py handles game mechanics, difficulty, traversing menu screens
+  * Sprites.py contains classes for game entities
+  * WeatherApi.py handles API calls for weather data
+  * MyTimer.py handles timers used for various game/player mechanics
+  * Assets.py manages the loading of textures (including sound, music)
+  * Settings.py has constants used by the other python files
+  * GameSaver.py handles game saving/loading/erasing of player data
+  * Menu
+  * DoublyLinkedStack.py is the data structure used for menu traversal
+  * InputBox.py handles a text input box used for city selection
+  * main.py (version used for running the web game version)
 
 ### Design process
 
-* Created the gaming objects, utilizing an inheritance structure. All moving/none moving entities like asteroids, players, powerups, and treasure inherited a 2D sprite class meant to encapsulate functionality
-* Created the game loop and mechanics
-* Created the Menu System once the game loop has been finished
-* Implemented API for gathering temperature and wind speed of a city, in order to be used for the difficulty system
-* Implemented a button that allowed the user to change the city being selected, thereby changed the game's difficulty
-* Created a Save/Load file system to save leaderboard information and city data for when the game is ran again.
+  * Created the gaming objects, utilizing an inheritance structure. All moving/none moving entities like asteroids, players, powerups, and treasure inherited a 2D sprite class meant to encapsulate functionality
+  * Created the game loop and mechanics
+  * Created the Menu System once the game loop has been finished
+  * Implemented API for gathering temperature and wind speed of a city, in order to be used for the difficulty system
+  * Implemented a button that allowed the user to change the city being selected, thereby changed the game's difficulty
+  * Created a Save/Load file system to save leaderboard information and city data for when the game is ran again.
   
 ### Challenges
 
-* How to structure a game from scratch: Start from building the menu system? Or start from bulding the game loop?
-* Implementing the menu system: Originally used a handful of booleans to determine what screens should be currently draw. This was not only cumbersome to develop more menu screens further (since more boolean logic would have to be introduced) but also error prone (with me having to keep track of the nested logic). My approach to this was using a first in-last in approach to menu states, with the use of a linked Stack data structure. 
-* Learning a complete new graphics library (Raylib), took some time to understand.
-* Memory management was a concern when it came to figuring out how to infinitely drawn powers while player is alive. There would need to be a system to keep track of the list of asteroids, power ups, and treasure leaving the screen as well as one deletion as the objects left the game screen. I used lists to keep track of the maximum objects that can be spawned as well as iterate through the game objects currently drawn on screen to determine whether to delete any.
-* Learned how to properly install Python with functions like pip and pyinstaller, as well as how to properly set python to Path system environment variable so that python can be typed in the terminal regardless of what folder you are in. Had to learn in order to use pip for installing dependencies/modules
-* Had to learn how to install a module with pip (and ensure that python is installed with pip)
-* If I had more time I would figure out how to make a python executable to distribute my game, or figure out a way to play on browser
+  * How to structure a game from scratch: Start from building the menu system? Or start from bulding the game loop?
+  * Implementing the menu system: Originally used a handful of booleans to determine what screens should be currently draw. This was not only cumbersome to develop more menu screens further (since more boolean logic would have to be introduced) but also error prone (with me having to keep track of the nested logic). My approach to this was using a first in-last in approach to menu states, with the use of a linked Stack data structure. 
+  * Learning a complete new graphics library (Raylib), took some time to understand.
+  * Memory management was a concern when it came to figuring out how to infinitely drawn powers while player is alive. There would need to be a system to keep track of the list of asteroids, power ups, and treasure leaving the screen as well as one deletion as the objects left the game screen. I used lists to keep track of the maximum objects that can be spawned as well as iterate through the game objects currently drawn on screen to determine whether to delete any.
+  * Learned how to properly install Python with functions like pip and pyinstaller, as well as how to properly set python to Path system environment variable so that python can be typed in the terminal regardless of what folder you are in. Had to learn in order to use pip for installing dependencies/modules
+  * Had to learn how to install a module with pip (and ensure that python is installed with pip)
+  * Configuring the game to run via webbrowser using pygbag + raylib
 
 ### How i figured out how to run (IGNORE THIS, this is just for my future reference)
 
@@ -176,7 +177,8 @@ import sys
 if sys.platform not in ("emscripten", "wasi"):
     import requests
 
-   to fix this. API just wont work.
+   to fix this. API just wont work without doing this.
+   
 6. Follow these instructions for running the first deployment.
 
   note: for raylib, under run:
@@ -197,23 +199,23 @@ if sys.platform not in ("emscripten", "wasi"):
 
 Sprite Assets:
 
-* Hearts and Heealth Bar by VampireGirl, itch.io https://fliflifly.itch.io/hearts-and-health-bar (Creative Commons 0)
-* Space Shooter Redux by Kenny, https://www.kenney.nl/assets/space-shooter-redux (Creative Commons 0)
-* Water Cannon VFX by anton_chi, https://anton-chi.itch.io/water-cannon (Free for Personal and Commercial Use, no redistribution)
-* Treasure+ by SchiGho, https://ninjikin.itch.io/treasure, (Creative Commons BY 4.0)
-* 8-Bit Screen By Tisã, https://samplefocus.com/samples/8-bit-scream (Standard License, Royalty Free)
-* Spacebar, https://www.pixilart.com/art/spacebar-55abfeff259a667
-* The King's Heart (loop) by Free Game Music 1, https://soundcloud.com/rmaren/movement-while-my-heart-still, (Creative Commons License)
+  * Hearts and Heealth Bar by VampireGirl, itch.io https://fliflifly.itch.io/hearts-and-health-bar (Creative Commons 0)
+  * Space Shooter Redux by Kenny, https://www.kenney.nl/assets/space-shooter-redux (Creative Commons 0)
+  * Water Cannon VFX by anton_chi, https://anton-chi.itch.io/water-cannon (Free for Personal and Commercial Use, no redistribution)
+  * Treasure+ by SchiGho, https://ninjikin.itch.io/treasure, (Creative Commons BY 4.0)
+  * 8-Bit Screen By Tisã, https://samplefocus.com/samples/8-bit-scream (Standard License, Royalty Free)
+  * Spacebar, https://www.pixilart.com/art/spacebar-55abfeff259a667
+  * The King's Heart (loop) by Free Game Music 1, https://soundcloud.com/rmaren/movement-while-my-heart-still, (Creative Commons License)
 
 Pixabay Content License (https://pixabay.com/service/license-summary/):
 
-* Retro Coin 4 by nettimato, https://pixabay.com/sound-effects/retro-coin-4-236671/
-* Coin Received by RibhavAgrawal, https://pixabay.com/sound-effects/coin-recieved-230517/
-* Sci-Fi Bubble Pop by paespedro, https://pixabay.com/sound-effects/sci-fi-bubble-pop-89059/
-* Mag In by nettimato, https://pixabay.com/sound-effects/mag-in-82094/
-* Lighter Click by Alex_Jauk, https://pixabay.com/sound-effects/lighter-click-271118/
-* Menu Button by Leszek_Szary,  https://pixabay.com/sound-effects/menu-button-88360/
-* Breaking Glass by wjl, https://pixabay.com/sound-effects/breaking-glass-84819/
+  * Retro Coin 4 by nettimato, https://pixabay.com/sound-effects/retro-coin-4-236671/
+  * Coin Received by RibhavAgrawal, https://pixabay.com/sound-effects/coin-recieved-230517/
+  * Sci-Fi Bubble Pop by paespedro, https://pixabay.com/sound-effects/sci-fi-bubble-pop-89059/
+  * Mag In by nettimato, https://pixabay.com/sound-effects/mag-in-82094/
+  * Lighter Click by Alex_Jauk, https://pixabay.com/sound-effects/lighter-click-271118/
+  * Menu Button by Leszek_Szary,  https://pixabay.com/sound-effects/menu-button-88360/
+  * Breaking Glass by wjl, https://pixabay.com/sound-effects/breaking-glass-84819/
 
 ## Known Issues/Features to add
 
