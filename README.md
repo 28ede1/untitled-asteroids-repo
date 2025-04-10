@@ -11,7 +11,10 @@ A retro-styled Asteroids game clone where you survive as long as possible avoidi
 * pyray, raylib, pygbag, requests libraries installed
 * Dependencies: cffi, pycparser, idna, certifi, urllib3, charset-normalizer
   
+## To run the program via web browser: (Note: Work in progess, expect bugs with the screen display*)
 
+  Click here: https://28ede1.github.io/untitled-asteroids-repo/
+  
 ## To run the program in your terminal:
 
 1. Install Python (with pip included) if it is not already installed
@@ -157,7 +160,37 @@ The codebase is organized into several modules:
 6. Inside the folder code type
    * python Game.py
    * or type python3 Game.py
+  
+For deploying a version of the game:
 
+1. Have a main.py file at the top directory of the folder.
+2. Import sys, Import asyncio at the top of the file
+3. Find the main game loop function. Make it an async function by 1. adding async before the def keyword and 2. adding await asyncio.sleep(0) after the .enddrawing() method (or similar counter part) inside the while loop
+4. Last line of the main.py file should be asyncio.run(SpaceGame().run_optimized()). Nothing should come after this.
+5. Like in the WeatherApi.py file, if there is an import requests, this will cause an error. Replace with,
+   
+import sys
+
+if sys.platform not in ("emscripten", "wasi"):
+    import requests
+
+   to fix this. API just wont work.
+6. Follow these instructions for running the first deployment.
+
+  note: for raylib, under run:
+
+  sudo apt-get install ffmpeg pngquant
+  python3 -m pip install git+https://github.com/pygame-web/pygbag
+  python3 -m pygbag --build --git --template noctx-nofs.tmpl --ume_block 0 $GITHUB_WORKSPACE/main.py
+
+  you must add the first line, and must add --git like shown to the 3rd line
+  
+  https://pygame-web.github.io/wiki/publishing/github.io/
+
+  Follow the rest of the instructions for deploying.
+
+  Link should be published to username.github.io/repo-name/
+  
 ## Credits
 
 Sprite Assets:
@@ -180,6 +213,9 @@ Pixabay Content License (https://pixabay.com/service/license-summary/):
 * Menu Button by Leszek_Szary,  https://pixabay.com/sound-effects/menu-button-88360/
 * Breaking Glass by wjl, https://pixabay.com/sound-effects/breaking-glass-84819/
 
-## Known Issues
+## Known Issues/Features to add
 
-* Game freezes for a bit when choosing a new city for the first time. Likely to do with the Weather API.
+* BUG: game freezes for a bit when choosing a new city for the first time. Likely to do with the Weather API. (When ran using python Game.py)
+* FEATURE: implement a different difficulty selection system for main.py (for running the game via browser) that uses a very large dictionary to select difficulty rather than using a get request for the weather api
+* BUG: Screen sizing and mouse cursor position is off (depending on device) when running the web version
+* FEATURE: implement a save/load file system somehow for the web version
