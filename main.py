@@ -910,5 +910,4 @@ class SpaceGame:
         pyray.close_window()
 
 
-# Fix file save/load system and game is done
 asyncio.run(SpaceGame().run_optimized())
