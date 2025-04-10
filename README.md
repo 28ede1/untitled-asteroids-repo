@@ -48,7 +48,7 @@ This game utilizes a state stack system to manage various game screens, enabling
 #### Asteroids
 Asteroids spawn randomly from the top of the screen and are deleted upon exiting the edges of the game window. Asteroids come in three types: Normal (Deals regular damage to the player upon collision), Icy (Deals less damage but freezes the player for a brief period), Fiery (Deals more damage to the player)
 
-#### Player
+#### Player, Powerups
 
 While avoiding asteroids, the player can collect various items; Treasure increases the player's score, Ammo refills the player's ammo capacity, Health packs restore player health, and Oxygen tanks can be shot to collect the resulting oxygen bubble to. Player oxygen drains over time and the player must manage ammo to collect enough oxygen bubbles to survive. The player's score multiplier also increases as they collect treasures and power-ups while avoiding asteroid collisions. However, the multiplier resets if the player is hit by an asteroid.
 
@@ -66,7 +66,7 @@ https://rapidapi.com/oktamovshohjahon/api/weather-api138/playground/apiendpoint_
 
 A weather API collects temperature and wind speed information for a city entered by the player through the Difficulty button in the options menu. The temperature is used to modify the distribution of asteroid types, simulating weather-impact on asteroid spawning. The wind speed influences the default speed at which asteroids spawn.
 
-## Weather Api (mock version)
+Weather "Api" (fake version)
 
 As of 4/10/2025, the import requests module is not compatible for pgybag, the library used for running the python code in browser. So, a seperate class with a custom get method selects a US states temperature and wind speed information from a dictionary. The temperature and windspeed work the same.
 
