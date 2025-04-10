@@ -83,7 +83,7 @@ Upon death, the player’s time survived and points are recorded in a leaderboar
 
 [![Video Title](https://img.youtube.com/vi/HkXz9sZ7LCc/0.jpg)](https://youtu.be/HkXz9sZ7LCc) 
 
-## ScreenShots
+## Screenshots
 
 ![Image](https://github.com/user-attachments/assets/848e3a33-85b3-4694-b306-830418d6a5d2)
 ![Image](https://github.com/user-attachments/assets/0e654e30-d04c-42c6-be5e-627beb832cf3)
