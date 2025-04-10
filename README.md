@@ -66,7 +66,7 @@ https://rapidapi.com/oktamovshohjahon/api/weather-api138/playground/apiendpoint_
 
 A weather API collects temperature and wind speed information for a city entered by the player through the Difficulty button in the options menu. The temperature is used to modify the distribution of asteroid types, simulating weather-impact on asteroid spawning. The wind speed influences the default speed at which asteroids spawn.
 
-Weather "Api" (fake version)
+#### Weather "Api" (fake version)
 
 As of 4/10/2025, the import requests module is not compatible for pgybag, the library used for running the python code in browser. So, a seperate class with a custom get method selects a US states temperature and wind speed information from a dictionary. The temperature and windspeed work the same.
 
