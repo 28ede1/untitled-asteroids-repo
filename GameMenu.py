@@ -332,8 +332,8 @@ class Button:
         Returns True if the mouse cursor is inside the button's rectangle, otherwise False.
         """
         mouse_pos = get_mouse_position()
-        in_rectangle_width = self._pos.x <= mouse_pos.x * SCALE_FACTOR <= self._pos.x + self._width # remove SCALE_FACTOR 
-        in_rectangle_height = self._pos.y <= mouse_pos.y * SCALE_FACTOR <= self._pos.y + self._height # remove SCALE_FACTOR
+        in_rectangle_width = self._pos.x <= mouse_pos.x <= self._pos.x + self._width 
+        in_rectangle_height = self._pos.y <= mouse_pos.y <= self._pos.y + self._height 
         return in_rectangle_width and in_rectangle_height
 
     def draw_button(self, color1, color2, pos):
