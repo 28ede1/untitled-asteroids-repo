@@ -69,7 +69,7 @@ class SpaceGame:
 
         # Audio management
         self._game_music = Assets.game_assets.get_asset_music("game_music.ogg")
-        pyray.set_music_volume(self._game_music, 0.4)
+        pyray.set_music_volume(self._game_music, 0.7)
         self._is_music_playing = False
 
         # Temperature to asteroid type mapping - influences game dynamics based on real-world weather
@@ -126,13 +126,13 @@ class SpaceGame:
     def play_game_over_sfx(self):
         """Play a game over jingle."""
         game_over = Assets.game_assets.get_asset_sound("game_over.ogg")
-        pyray.set_sound_volume(game_over, 0.2)
+        pyray.set_sound_volume(game_over, 0.5)
         pyray.play_sound(game_over)
         self.stop_music()
 
     def play_damage_sfx(self):
         crash = Assets.game_assets.get_asset_sound("crash.ogg")
-        pyray.set_sound_volume(crash, 0.2)
+        pyray.set_sound_volume(crash, 0.5)
         pyray.play_sound(crash)
 
     def _play_treasure_collect_sfx(self):
@@ -140,7 +140,7 @@ class SpaceGame:
         Plays the treasure collection sound.
         """
         collect = Assets.game_assets.get_asset_sound("treasure_collect.ogg")
-        pyray.set_sound_volume(collect, 0.2)
+        pyray.set_sound_volume(collect, 0.5)
         pyray.play_sound(collect)
 
     def collect_item(self, item, collect_sfx):
@@ -641,7 +641,7 @@ class SpaceGame:
                 and pyray.check_collision_recs(power_up_hitbox, laser_hitbox)
             ):
                 explosion = Assets.game_assets.get_asset_sound("explosion.ogg")
-                pyray.set_sound_volume(explosion, 0.1)
+                pyray.set_sound_volume(explosion, 0.3)
                 pyray.play_sound(explosion)
                 # So that player can now collect oxygen bubble
                 powerup.change_lock_status(False)
