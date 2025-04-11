@@ -5,7 +5,7 @@
 
 # Get the scaled width and height for consistency. CHANGING will break the game
 TARGET_SCREEN_WIDTH, TARGET_SCREEN_HEIGHT = 1280, 720 
-DEVICE_WIDTH, DEVICE_HEIGHT = 1440, 900
+DEVICE_WIDTH, DEVICE_HEIGHT = 1280, 720 # 1440, 900
 
 # Used for scaling elements of the game based on screensize
 SCALE_X = DEVICE_WIDTH / TARGET_SCREEN_WIDTH
