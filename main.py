@@ -74,18 +74,22 @@ class SpaceGame:
 
         # Temperature to asteroid type mapping - influences game dynamics based on real-world weather
         self._temperature_to_asteroid_chance = {
-            (-float("inf"), 30): {"normal": 0, "icy": 100, "fiery": 0},
-            (31, 40): {"normal": 20, "icy": 80, "fiery": 0},
-            (41, 45): {"normal": 40, "icy": 60, "fiery": 0},
-            (46, 50): {"normal": 60, "icy": 40, "fiery": 0},
-            (51, 55): {"normal": 75, "icy": 25, "fiery": 0},
-            (56, 60): {"normal": 85, "icy": 15, "fiery": 0},
-            (61, 65): {"normal": 75, "icy": 0, "fiery": 25},
-            (66, 70): {"normal": 65, "icy": 0, "fiery": 35},
-            (71, 75): {"normal": 30, "icy": 0, "fiery": 70},
-            (76, 80): {"normal": 20, "icy": 0, "fiery": 80},
-            (81, float("inf")): {"normal": 0, "icy": 0, "fiery": 100}
-            }
+            (0, 10): {"normal": 0, "icy": 100, "fiery": 0},
+            (11, 15): {"normal": 5, "icy": 95, "fiery": 0},
+            (16, 20): {"normal": 10, "icy": 90, "fiery": 0},
+            (21, 25): {"normal": 15, "icy": 85, "fiery": 0},
+            (26, 30): {"normal": 25, "icy": 75, "fiery": 0},
+            (31, 35): {"normal": 40, "icy": 60, "fiery": 0},
+            (36, 40): {"normal": 55, "icy": 45, "fiery": 0},
+            (41, 45): {"normal": 70, "icy": 30, "fiery": 0},
+            (46, 50): {"normal": 80, "icy": 15, "fiery": 5},
+            (51, 55): {"normal": 70, "icy": 10, "fiery": 20},
+            (56, 60): {"normal": 60, "icy": 5, "fiery": 35},
+            (61, 65): {"normal": 50, "icy": 0, "fiery": 50},
+            (66, 70): {"normal": 35, "icy": 0, "fiery": 65},
+            (71, 75): {"normal": 15, "icy": 0, "fiery": 85},
+            (76, 82): {"normal": 5, "icy": 0, "fiery": 95}
+        }
 
         # Used for random name generation for leaderboard entries
         self._char_string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
