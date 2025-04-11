@@ -10,7 +10,7 @@ import sys
 
 import Sprites
 import Assets
-import WeatherApi
+import WeatherApiFake
 import GameSaver
 import GameMenu
 import random
@@ -74,20 +74,18 @@ class SpaceGame:
 
         # Temperature to asteroid type mapping - influences game dynamics based on real-world weather
         self._temperature_to_asteroid_chance = {
-            (-float("inf"), 5): {"normal": 0, "icy": 100, "fiery": 0},
-            (6, 14): {"normal": 20, "icy": 80, "fiery": 0},
-            (15, 23): {"normal": 40, "icy": 60, "fiery": 0},
-            (24, 32): {"normal": 45, "icy": 55, "fiery": 0},
-            (33, 40): {"normal": 60, "icy": 40, "fiery": 0},
-            (41, 50): {"normal": 75, "icy": 25, "fiery": 0},
-            (51, 60): {"normal": 85, "icy": 15, "fiery": 0},
+            (-float("inf"), 30): {"normal": 0, "icy": 100, "fiery": 0},
+            (31, 40): {"normal": 20, "icy": 80, "fiery": 0},
+            (41, 45): {"normal": 40, "icy": 60, "fiery": 0},
+            (46, 50): {"normal": 60, "icy": 40, "fiery": 0},
+            (51, 55): {"normal": 75, "icy": 25, "fiery": 0},
+            (56, 60): {"normal": 85, "icy": 15, "fiery": 0},
             (61, 65): {"normal": 75, "icy": 0, "fiery": 25},
             (66, 70): {"normal": 65, "icy": 0, "fiery": 35},
-            (71, 76): {"normal": 30, "icy": 0, "fiery": 70},
-            (77, 81): {"normal": 20, "icy": 0, "fiery": 80},
-            (82, 90): {"normal": 0, "icy": 0, "fiery": 100},
-            (91, 200): {"normal": 0, "icy": 0, "fiery": 100},
-        }
+            (71, 75): {"normal": 30, "icy": 0, "fiery": 70},
+            (76, 80): {"normal": 20, "icy": 0, "fiery": 80},
+            (81, float("inf")): {"normal": 0, "icy": 0, "fiery": 100}
+            }
 
         # Used for random name generation for leaderboard entries
         self._char_string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -775,17 +773,17 @@ class SpaceGame:
 
     def change_game_difficulty(self, city):
         """
-        Weather API integration that modifies game difficulty based on
+        Weather API Fake integration that modifies game difficulty based on
         real-world weather data. Temperature affects asteroid types,
         while wind speed affects asteroid movement speed.
 
-        Falls back to defaults if city data cannot be retrieved.
+        Falls back to defaults if capital city data cannot be retrieved.
         """
-        city_data = WeatherApi.get_city_temp_wspd(city)
+        city_data = WeatherApiFake.get_capital_temp_wspd(city)
         if "temperature" in city_data and "windspeed" in city_data:
 
             # Scale wind speed to appropriate game speed range
-            wind_speed_range = [city_data["windspeed"] * 100 + 1, city_data["windspeed"] * 100 + 50]
+            wind_speed_range = [city_data["windspeed"] * 10, city_data["windspeed"] * 10 + 50]
             self._city_custom = city
             self._game_temperature_custom = city_data["temperature"]
             self._max_speed_range_custom = wind_speed_range
@@ -794,7 +792,7 @@ class SpaceGame:
 
 
         else:
-            # Fallback to defaults if API call fails
+            # Fallback to defaults if this mock fails
             self._city_custom = self._city_default
             self._game_temperature_custom = self._game_temperature_default
             self._max_speed_range_custom = self._max_speed_range_default[:]

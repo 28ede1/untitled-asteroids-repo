@@ -7,7 +7,7 @@ A retro-styled Asteroids game clone where you survive as long as possible avoidi
   * Knowledge of Object-Oriented Programming, Inheritance, File Processing, Data Strutures, and Game-Loop logic
   * Knowledge of utilizing API's
   * WeatherApi (https://rapidapi.com/oktamovshohjahon/api/weather-api138/playground/apiendpoint_acb2971f-25d4-4a29-b5d6-87b9f3f8131b)
-  * Python install with pip package
+  * Python, installed with the pip package
   * pyray, raylib, pygbag, requests libraries installed
   * Dependencies: cffi, pycparser, idna, certifi, urllib3, charset-normalizer
   
@@ -43,10 +43,10 @@ A retro-styled Asteroids game clone where you survive as long as possible avoidi
 
 ## Core Gameplay
 
-This game utilizes a state stack system to manage various game screens, enabling smooth transitions between menus and gameplay. The core gameplay loop activates when the game enters the Gameplay state. The game involves avoiding randomly spawning asteroids, collecting treasures, and managing resources, with a progressive difficulty system that adapts as the player survives.
+This game utilizes a state stack system to manage various game screens, enabling smooth transitions between menus and gameplay. The core gameplay loop activates when the game enters the Gameplay state. The game involves avoiding randomly spawning asteroids, collecting treasures, and managing resources, with a progressive difficulty system that adapts as the player survives. The player can choose a city, and the cities weather data is used by the program to change the types of asteroids that can spawn as well as their speeds.
 
 #### Asteroids
-Asteroids spawn randomly from the top of the screen and are deleted upon exiting the edges of the game window. Asteroids come in three types: Normal (Deals regular damage to the player upon collision), Icy (Deals less damage but freezes the player for a brief period), Fiery (Deals more damage to the player)
+Asteroids spawn randomly from the top of the screen and are deleted upon exiting the edges of the game window. Asteroids come in three types: Normal (Deals regular damage to the player upon collision), Icy (Deals less damage but freezes the player for a brief period), Fiery (Deals more damage to the player).
 
 #### Player
 
@@ -59,6 +59,9 @@ The game features a dynamic difficulty system that adjusts based on the playerâ€
 Asteroid Frequency: Initially, asteroids spawn at regular intervals. As the player survives, the number of asteroids increases.
 
 Asteroid Speed: Over time, the speed range of asteroids increases in a set number of intervals, making the game more challenging.
+
+The user can go into options and change the difficulty by typing a city. The cities temperature is used to determine
+the types of asteroids that spawn, and the wind speed is used to determine the starting speed range of the asteroids.
 
 #### Weather API Usage
 
