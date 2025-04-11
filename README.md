@@ -150,24 +150,22 @@ The codebase is organized into several modules:
 
 ### How i figured out how to run (IGNORE THIS, this is just for my future reference)
 
-1. Installed Python3 if it is not already installed
+1. Installed Python if it is not already installed
 
-   * You can type, python3 --version, in terminal to see the version number if it exists. The version used to implement this program was Python 3.13.2 on Windows for reference.
+   * You can type, python --version, in terminal to see the version number if it exists. The version used to implement this program was Python 3.13.2 on Windows for reference.
    
    * If not, install the latest version of python here for your operating system: https://www.python.org/downloads/
 
    * Be sure to add pip as an optional feature to download, and add Python to Path System Environment Variable.
 
-   * Find the file folder of where the python.exe version is installed. To add Python3, simply make a copy of the python.exe file and rename it to python3.
-
 2. Install the latest version of pip if it isn't installed already
 
-   * python3 -m pip install --upgrade pip
+   * python -m pip install --upgrade pip
 
 3. Install the raylib package (installing raylib installs the raylib/pyray modules)
 
-   * python3 -m pip install setuptools
-   * python3 -m pip install raylib==5.5.0.0
+   * python -m pip install setuptools
+   * python -m pip install raylib==5.5.0.0
 
 4. Install the requests module (for the Weather API) 
 
@@ -178,15 +176,14 @@ The codebase is organized into several modules:
    
 6. Inside the folder code type
    * python Game.py
-   * or type python3 Game.py
   
-For deploying a version a game in browser (for future reference only:
+For deploying a version a game in browser (for future reference only):
 
 1. Have a main.py file at the top directory of the folder.
 2. Import sys, Import asyncio at the top of the file
 3. Find the main game loop function. Make it an async function by 1. adding async before the def keyword and 2. adding await asyncio.sleep(0) after the .enddrawing() method (or similar counter part) inside the while loop
 4. Last line of the main.py file should be asyncio.run(SpaceGame().run_optimized()). Nothing should come after this.
-5. Like in the WeatherApi.py file, if there is an import requests, this will cause an error. Replace with
+5. Like in the WeatherApi.py file, if there is an import requests, this will cause an error. Replace with the following..
    
 import sys
 
