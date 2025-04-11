@@ -15,7 +15,7 @@ class InputBox:
     - Tracks mouse hover and input events to show visual changes.
     """
 
-    def __init__(self, pos, font, font_size, width, height, character_limit, border_color, interior_color, text_color):
+    def __init__(self, pos, font, font_size, width, height, character_limit, border_color, interior_color, text_color, placeholder_text):
         self._input_box_pos = pos
         self._character_limit = character_limit
         self._border_color = border_color
@@ -25,6 +25,7 @@ class InputBox:
         self._is_enabled = False
         self._input_box_text = ""
         self._text_to_save = ""
+        self._placeholder_text = placeholder_text
         self._input_box_font = font
         self._input_box_font_size = font_size
         self._input_box_width = width
@@ -102,7 +103,7 @@ class InputBox:
         Text is centered inside the box.
         """
         if len(self._input_box_text) == 0:
-            display_text = "Enter City"  # Placeholder text
+            display_text = self._placeholder_text  # Placeholder text
         else:
             display_text = self._input_box_text
 
@@ -136,7 +137,7 @@ class InputBox:
 
     def reset_input_box(self):
         """
-        Resets the input box text and state after the input has been saved.
+        Resets the input box text and saved text after the input has been saved.
         """
         self._input_box_text = ""
         self._text_to_save = ""

@@ -71,7 +71,7 @@ A weather API collects temperature and wind speed information for a city entered
 
 #### Weather "Api" (fake version)
 
-As of 4/10/2025, the import requests module is not compatible for pgybag, the library used for running the python code in browser. So, a seperate class with a custom get method selects a US states temperature and wind speed information from a dictionary. The temperature and windspeed work the same.
+As of 4/10/2025, the import requests module is not compatible for pgybag, the library used for running the python code in browser. So, a seperate class with a custom get method selects a cities temperature and wind speed information from a dictionary. The temperature and windspeed work the same.
 
 #### Save/Load Feature
 
@@ -117,7 +117,7 @@ The codebase is organized into several modules:
     for this project doesn't work as indended for main.py
   * Sprites.py contains classes for game entities
   * WeatherApi.py handles API calls for weather data (used by game.py)
-  * WeatherApiFake.py handles getting a US states weather data (used by main.py)
+  * WeatherApiFake.py handles getting a city capital weather data (used by main.py)
   * MyTimer.py handles timers used for various game/player mechanics
   * Assets.py manages the loading of textures (including sound, music)
   * Settings.py has constants used by the other python files
@@ -212,7 +212,7 @@ if sys.platform not in ("emscripten", "wasi"):
 
 Sprite Assets:
 
-  * Hearts and Heealth Bar by VampireGirl, itch.io https://fliflifly.itch.io/hearts-and-health-bar (Creative Commons 0)
+  * Hearts and Health Bar by VampireGirl, itch.io https://fliflifly.itch.io/hearts-and-health-bar (Creative Commons 0)
   * Space Shooter Redux by Kenny, https://www.kenney.nl/assets/space-shooter-redux (Creative Commons 0)
   * Water Cannon VFX by anton_chi, https://anton-chi.itch.io/water-cannon (Free for Personal and Commercial Use, no redistribution)
   * Treasure+ by SchiGho, https://ninjikin.itch.io/treasure, (Creative Commons BY 4.0)

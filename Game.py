@@ -84,7 +84,8 @@ class SpaceGame:
         # Input box positioned near difficulty button for city input
         self._user_input_box = GameInputBox.InputBox(
             pyray.Vector2(Settings.ADJUSTED_WIDTH / 2 - 240 * Settings.SCALE_FACTOR, 250 * Settings.SCALE_FACTOR), Assets.game_assets.get_asset_font("slkscr.ttf"), 
-            30 * Settings.SCALE_FACTOR, 470 * Settings.SCALE_FACTOR, 60 * Settings.SCALE_FACTOR, 18, raylib.RED, raylib.WHITE, raylib.BLACK
+            30 * Settings.SCALE_FACTOR, 470 * Settings.SCALE_FACTOR, 60 * Settings.SCALE_FACTOR, 18, raylib.RED, raylib.WHITE, raylib.BLACK,
+            "Enter City"
         )
 
         # Game Screen Transitioning
