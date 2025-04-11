@@ -41,7 +41,7 @@ def load_gamesave_file():
             "Game Leaderboard": [],
             "City selected": "Default",
             "City temperature": 65,
-            "City wind speed range": [200, 400],
+            "City wind speed range": [200, 250],
         }
         return data
 
