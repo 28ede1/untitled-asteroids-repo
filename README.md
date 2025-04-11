@@ -234,5 +234,4 @@ Pixabay Content License (https://pixabay.com/service/license-summary/):
 
 * BUG: game freezes for a bit when choosing a new city for the first time. Likely to do with the Weather API. (When ran using python Game.py)
 * BUG: Screen sizing and mouse cursor position is off (depending on device) when running the web version
-* Implement more cities (For now, its just the capitals of Mexico, US, Canada) to be used by the WeatherApiFake.py for main.py
 * FEATURE: implement a save/load file system somehow for the web version
