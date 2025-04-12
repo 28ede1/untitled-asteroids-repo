@@ -13,7 +13,7 @@ A retro-styled Asteroids game clone where you survive as long as possible avoidi
   
 ## To play the game via web browser: 
 
-  (Note: Work in progess, expect bugs with the screen display*, minimize screen for best results.)
+  (Note: Work in progess, expect bugs with the screen display*, minimize screen to 67% for best results.)
   
   Click here: https://28ede1.github.io/untitled-asteroids-repo/
   
