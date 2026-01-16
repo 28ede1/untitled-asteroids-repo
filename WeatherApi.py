@@ -1,11 +1,19 @@
 import requests
+import os
+from dotenv import load_dotenv
+
 
 """
 This API parses data from a weather information database. This implementation specifically retreives 
 """
 
-def get_city_temp_wspd(lat, long):
+load_dotenv()
+apikey = os.getenv("WEATHER_API_KEY")
 
+if not apikey:
+    raise RuntimeError("API_KEY is not set")
+
+def get_city_temp_wspd(lat, long):
 
     # ensures parameters represent integers or float strings, which are required to query
     try:
@@ -19,6 +27,8 @@ def get_city_temp_wspd(lat, long):
     url = "https://weatherbit-v1-mashape.p.rapidapi.com/current"
 
     headers = {
+        "x-rapidapi-key": apikey,
+        "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com"
     }
 
     response = requests.get(url, headers=headers, params=querystring)
