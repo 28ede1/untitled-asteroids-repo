@@ -863,7 +863,7 @@ class SpaceGame:
         # Erase save data upon button click
         if self._menu._erase_file_clicked:
             # Reset games leaderboard, and city data displays in-game as well
-            self._game_temperature_custom = 65
+            self._game_temperature_custom = 50
             self._max_speed_range_custom = [200, 250]
             self._max_speed_range_default = [200, 250]
             self._city_custom = "Default"
