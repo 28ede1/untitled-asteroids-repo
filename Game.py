@@ -770,24 +770,35 @@ class SpaceGame:
         while wind speed affects asteroid movement speed.
 
         Falls back to defaults if city data cannot be retrieved.
+
+        city should be in the format of "42.1,61.2"
         """
-        city_data = WeatherApi.get_city_temp_wspd(city)
-        if "temperature" in city_data and "windspeed" in city_data:
 
-            # Scale wind speed to appropriate game speed range
-            wind_speed_range = [city_data["windspeed"] * 100 + 1, city_data["windspeed"] * 100 + 50]
-            self._city_custom = city
-            self._game_temperature_custom = city_data["temperature"]
-            self._max_speed_range_custom = wind_speed_range
-            # Store a list with the same data, but don't let them reference each other
-            self._max_speed_range_default = wind_speed_range[:]
+        city_formatted = city.split(",")
 
-
-        else:
-            # Fallback to defaults if API call fails
+        if len(city_formatted) != 2:
             self._city_custom = self._city_default
             self._game_temperature_custom = self._game_temperature_default
             self._max_speed_range_custom = self._max_speed_range_default[:]
+        else:
+            city_data = WeatherApi.get_city_temp_wspd(city_formatted[0], city_formatted[1])
+
+            if "temperature" in city_data and "windspeed" in city_data:
+
+                # Scale wind speed to appropriate game speed range
+                wind_speed_range = [city_data["windspeed"] * 100 + 1, city_data["windspeed"] * 100 + 50]
+                self._city_custom = city
+                self._game_temperature_custom = city_data["temperature"]
+                self._max_speed_range_custom = wind_speed_range
+                # Store a list with the same data, but don't let them reference each other
+                self._max_speed_range_default = wind_speed_range[:]
+
+
+            else:
+                # Fallback to defaults if API call fails
+                self._city_custom = self._city_default
+                self._game_temperature_custom = self._game_temperature_default
+                self._max_speed_range_custom = self._max_speed_range_default[:]
 
     def run_optimized(self):
         """

@@ -33,7 +33,7 @@ class InputBox:
         self._input_box_rectangle = Rectangle(
             self._input_box_pos.x, self._input_box_pos.y, self._input_box_width, self._input_box_height, 
         )
-        self._accepted_characters = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        self._accepted_characters = "0123456789,."
         self._enter_is_pressed = False
 
     def draw_input_box(self):
