@@ -1,8 +1,6 @@
 from pyray import draw_rectangle_v, draw_rectangle_lines_ex, get_mouse_position, get_char_pressed, is_key_pressed, measure_text_ex, draw_text_pro, Rectangle, Vector2
 from raylib import KEY_ENTER, KEY_BACKSPACE, GRAY, WHITE
 
-
-
 class InputBox:
     """
     A text box that allows user input with various customization options.
@@ -11,7 +9,7 @@ class InputBox:
     - Allows text input when mouse hovers over it.
     - Supports character limit, backspace, and enter functionality.
     - Can be resized, repositioned, and styled.
-    - Displays text or a placeholder ("Enter City") when empty.
+    - Displays text or a placeholder ("Enter Location") when empty.
     - Tracks mouse hover and input events to show visual changes.
     """
 
@@ -33,7 +31,7 @@ class InputBox:
         self._input_box_rectangle = Rectangle(
             self._input_box_pos.x, self._input_box_pos.y, self._input_box_width, self._input_box_height, 
         )
-        self._accepted_characters = "0123456789,."
+        self._accepted_characters = "0123456789,.-"
         self._enter_is_pressed = False
 
     def draw_input_box(self):

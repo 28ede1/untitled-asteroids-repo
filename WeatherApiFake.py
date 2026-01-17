@@ -1,4 +1,4 @@
-# Average temperatures in F and wind speed in mph per city capital (Americas)
+# Average annual temperatures in F and wind speed in mph, us city capitals
 capital_weather_data = {
     ("38", "-77"): {"temperature": 58, "windspeed": 10, "city": "Washington, DC"},
     ("32", "-86"): {"temperature": 62, "windspeed": 8, "city": "Montgomery"},

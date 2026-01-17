@@ -1,17 +1,18 @@
 import requests
 import os
 from dotenv import load_dotenv
+import math
 
-
-"""
-This API parses data from a weather information database. This implementation specifically retreives 
-"""
 
 load_dotenv()
 apikey = os.getenv("WEATHER_API_KEY")
 
 if not apikey:
     raise RuntimeError("API_KEY is not set")
+
+"""
+This API parses data from a weather information database. This implementation specifically retreives 
+"""
 
 def get_city_temp_wspd(lat, long):
 
@@ -37,7 +38,7 @@ def get_city_temp_wspd(lat, long):
         return {"error": "Failed to fetch data. Please try again later."}
 
     weather = response.json()
-    city_data_to_return = {"temperature" : weather['data'][0]['temp'], "windspeed" : weather['data'][0]['wind_spd'], "city_name" : weather['data'][0]['city_name']}
+    city_data_to_return = {"temperature" : math.ceil(weather['data'][0]['temp']), "windspeed" : math.ceil(weather['data'][0]['wind_spd']), "city_name" : weather['data'][0]['city_name']}
 
     return city_data_to_return
 

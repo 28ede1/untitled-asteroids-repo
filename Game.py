@@ -9,6 +9,7 @@ import MyTimer
 import Settings
 import raylib
 import pyray
+import WeatherApiFake
 
 class SpaceGame:
     """
@@ -16,7 +17,7 @@ class SpaceGame:
     spawning/despawning of asteroids/treasure/powerups, music, and weather-based mechanics.
     The game's difficulty get's increasingly difficult as the game runs; SpaceGame()
     uses an API to adapt difficulty based on temperature and wind speed data of
-    real life cities. Colder temperatures spawn more icy asteroids, hotter temperatures spawn
+    irl cities. Colder temperatures spawn more icy asteroids, hotter temperatures spawn
     fiery ones.
     """
 
@@ -69,8 +70,8 @@ class SpaceGame:
             (24, 32): {"normal": 45, "icy": 55, "fiery": 0},
             (33, 40): {"normal": 60, "icy": 40, "fiery": 0},
             (41, 50): {"normal": 75, "icy": 25, "fiery": 0},
-            (51, 60): {"normal": 85, "icy": 15, "fiery": 0},
-            (61, 65): {"normal": 75, "icy": 0, "fiery": 25},
+            (51, 60): {"normal": 70, "icy": 15, "fiery": 15},
+            (61, 65): {"normal": 75, "icy": 10, "fiery": 15},
             (66, 70): {"normal": 65, "icy": 0, "fiery": 35},
             (71, 76): {"normal": 30, "icy": 0, "fiery": 70},
             (77, 81): {"normal": 20, "icy": 0, "fiery": 80},
@@ -85,7 +86,7 @@ class SpaceGame:
         self._user_input_box = GameInputBox.InputBox(
             pyray.Vector2(Settings.ADJUSTED_WIDTH / 2 - 240 * Settings.SCALE_FACTOR, 250 * Settings.SCALE_FACTOR), Assets.game_assets.get_asset_font("slkscr.ttf"), 
             30 * Settings.SCALE_FACTOR, 470 * Settings.SCALE_FACTOR, 60 * Settings.SCALE_FACTOR, 18, raylib.RED, raylib.WHITE, raylib.BLACK,
-            "Enter City"
+            "Enter Location"
         )
 
         # Game Screen Transitioning
@@ -763,7 +764,7 @@ class SpaceGame:
         """Checks if user has clicked exit button."""
         return self._menu._exit_clicked
 
-    def change_game_difficulty(self, city):
+    def change_game_difficulty(self, city, use_mock=False):
         """
         Weather API integration that modifies game difficulty based on
         real-world weather data. Temperature affects asteroid types,
@@ -781,7 +782,10 @@ class SpaceGame:
             self._game_temperature_custom = self._game_temperature_default
             self._max_speed_range_custom = self._max_speed_range_default[:]
         else:
-            city_data = WeatherApi.get_city_temp_wspd(city_formatted[0], city_formatted[1])
+            if use_mock:
+                city_data = WeatherApiFake.get_city_temp_wspd(city_formatted[0], city_formatted[1])
+            else:
+                city_data = WeatherApi.get_city_temp_wspd(city_formatted[0], city_formatted[1])
 
             if "temperature" in city_data and "windspeed" in city_data:
 
@@ -868,13 +872,13 @@ class SpaceGame:
             self._user_input_box.enable_input_box()
             if self._user_input_box._enter_is_pressed:
                 city_typed = self._user_input_box._text_to_save
-                self.change_game_difficulty(city_typed)
+                self.change_game_difficulty(city_typed, False)
                 self._user_input_box.reset_input_box()
 
         # Erase save data upon button click
         if self._menu._erase_file_clicked:
             # Reset games leaderboard, and city data displays in-game as well
-            self._game_temperature_custom = 50
+            self._game_temperature_custom = 55
             self._max_speed_range_custom = [200, 250]
             self._max_speed_range_default = [200, 250]
             self._city_custom = "Default"

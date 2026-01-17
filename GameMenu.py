@@ -124,7 +124,7 @@ class Menu:
         """
         draw_text_ex(
             game_assets.get_asset_font("slkscreb.ttf"),
-            "City: " + city,
+            "Location: " + city,
             Vector2(self._buttons["difficulty"].get_button_position().x * SCALE_FACTOR - 20, 340 * SCALE_FACTOR),
             35 * SCALE_FACTOR,
             0,
