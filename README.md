@@ -1,45 +1,22 @@
 # An Untitled Asteroids Game
 
-A retro-styled Asteroids game clone where you survive as long as possible avoiding asteroids while collecting powerups to keep you alive and treasure to increase your score. 
+Asteroids game clone where you survive as long as possible avoiding asteroids while collecting powerups to keep you alive and treasure to increase your score.
 
-## Prequisities/Libraries needed
+## Requirements
+    
+  * Python 3.9+
 
-  * Knowledge of Object-Oriented Programming, Inheritance, File Processing, Data Strutures, and Game-Loop logic
-  * Knowledge of utilizing API's
-  * WeatherApi (https://rapidapi.com/weatherbit/api/weather/playground/5933364be4b08ab68dbc3786)
-  * Python, installed with the pip package
-  * pyray, raylib, pygbag, requests libraries installed
-  * Dependencies: cffi, pycparser, idna, certifi, urllib3, charset-normalizer
-  
-## To play the game via web browser: 
+## Installation/Setup
 
-  (Note: Work in progess, expect bugs with the screen display*, minimize screen to 67% for best results.)
-  
-  Click here: https://28ede1.github.io/untitled-asteroids-repo/
-  
-## To run the program in your terminal:
+  * git clone this
+  * cd untitled-asteroids-repo
+  * pip install -r requirements.txt
+  * get weather api key from https://rapidapi.com/weatherbit/api/weather/playground/5933364be4b08ab68dbc3786
+  * create .env file in project_root and set WEATHER_API_KEY=your_api_key_here
 
-1. Install Python (with pip included) if it is not already installed
+## To run
 
-   * You can type, python --version, in terminal to see the version number if it exists. 
-
-2. Install the raylib package (installing raylib should install the raylib/pyray modules). 
-
-   * pip install raylib
-     
-3. Install the requests module (for the Weather API). 
-
-   * pip install requests
-
-4. Git clone this repository
-
-5. In the WeatherApi.py get_city_temp_wsp() method, replace url and headers with your API information
-
-   * Make sure you are subscribed to the api
-   * The header containing the key and host, can be pasted from here, as well as the url
-     
-6. Inside the folder top folder (ex: untitled_asteroids_repository) type, 
-   * python Game.py
+python Game.py
 
 ## Core Gameplay
 
@@ -148,66 +125,6 @@ The codebase is organized into several modules:
   * Had to learn how to install a module with pip (and ensure that python is installed with pip)
   * Configuring the game to run via webbrowser using pygbag + raylib
 
-### How i figured out how to run (IGNORE THIS, this is just for my future reference)
-
-1. Installed Python if it is not already installed
-
-   * You can type, python --version, in terminal to see the version number if it exists. The version used to implement this program was Python 3.13.2 on Windows for reference.
-   
-   * If not, install the latest version of python here for your operating system: https://www.python.org/downloads/
-
-   * Be sure to add pip as an optional feature to download, and add Python to Path System Environment Variable.
-
-2. Install the latest version of pip if it isn't installed already
-
-   * python -m pip install --upgrade pip
-
-3. Install the raylib package (installing raylib installs the raylib/pyray modules)
-
-   * python -m pip install setuptools
-   * python -m pip install raylib==5.5.0.0
-
-4. Install the requests module (for the Weather API) 
-
-   * python.exe -m pip install requests
-   * Note that this installs the module globally*
-
-5. Git clone this repository
-   
-6. Inside the folder code type
-   * python Game.py
-  
-For deploying a version a game in browser (for future reference only):
-
-1. Have a main.py file at the top directory of the folder.
-2. Import sys, Import asyncio at the top of the file
-3. Find the main game loop function. Make it an async function by 1. adding async before the def keyword and 2. adding await asyncio.sleep(0) after the .enddrawing() method (or similar counter part) inside the while loop
-4. Last line of the main.py file should be asyncio.run(SpaceGame().run_optimized()). Nothing should come after this.
-5. Like in the WeatherApi.py file, if there is an import requests, this will cause an error. Replace with the following..
-   
-import sys
-
-if sys.platform not in ("emscripten", "wasi"):
-    import requests
-
-   to fix this. API just wont work without doing this.
-   
-6. Follow these instructions for running the first deployment.
-
-  note: for raylib, under run:
-
-  sudo apt-get install ffmpeg pngquant
-  python3 -m pip install git+https://github.com/pygame-web/pygbag
-  python3 -m pygbag --build --git --template noctx-nofs.tmpl --ume_block 0 $GITHUB_WORKSPACE/main.py
-
-  you must add the first line, and must add --git like shown to the 3rd line
-  
-  https://pygame-web.github.io/wiki/publishing/github.io/
-
-  Follow the rest of the instructions for deploying.
-
-  Link should be published to username.github.io/repo-name/
-  
 ## Credits
 
 Sprite Assets:
@@ -229,9 +146,3 @@ Pixabay Content License (https://pixabay.com/service/license-summary/):
   * Lighter Click by Alex_Jauk, https://pixabay.com/sound-effects/lighter-click-271118/
   * Menu Button by Leszek_Szary,  https://pixabay.com/sound-effects/menu-button-88360/
   * Breaking Glass by wjl, https://pixabay.com/sound-effects/breaking-glass-84819/
-
-## Known Issues/Features to add
-
-* BUG: game freezes for a bit when choosing a new city for the first time. Likely to do with the Weather API. (When ran using python Game.py)
-* BUG: Screen sizing and mouse cursor position is off (depending on device) when running the web version
-* FEATURE: implement a save/load file system somehow for the web version
