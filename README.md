@@ -20,6 +20,11 @@ python Game.py
 
 ## Core Gameplay
 
+### Game Controls
+
+  * Move Player - Arrow Keys
+  * Shoot Asteroid - Spacebar
+
 #### Asteroids
 Asteroids spawn randomly from the top of the screen and fall to the bottom of the screen at different times. Asteroids come in three types: Normal (Deals regular damage to the player upon collision), Icy (Deals less damage but freezes the player for a brief period), Fiery (Deals more damage to the player).
 
@@ -53,11 +58,6 @@ The game includes a save/load feature that allows players to save their difficul
 #### Leaderboard
 
 Upon death, the player’s time survived and points are recorded in a leaderboard, which tracks the top 5 scores.
-
-## Game Controls
-
-  * Move Player - Arrow Keys
-  * Shoot Asteroid - Spacebar
 
 ## Gameplay Demo 
 
