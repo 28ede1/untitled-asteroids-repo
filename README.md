@@ -40,7 +40,7 @@ Asteroid Frequency: Initially, asteroids spawn at regular intervals. As the play
 
 Asteroid Speed: Over time, the speed range of asteroids increases in a set number of intervals, making it increasingly harder to avoid asteroids.
 
-The user can go into options and change the difficulty by typing a location in latitude,longitude format. The cities temperature is used to determine
+The user can go into options and change the difficulty by typing a location in latitude,longitude format. The locations temperature is used to determine
 the types of asteroids that spawn, and the wind speed is used to determine the starting speed range of the asteroids.
 
 #### Weather API Usage
@@ -69,10 +69,8 @@ Upon death, the player’s time survived and points are recorded in a leaderboar
 ![Image](https://github.com/user-attachments/assets/0e654e30-d04c-42c6-be5e-627beb832cf3)
 ![Image](https://github.com/user-attachments/assets/b6ba0ef1-a3fa-4aff-9524-1819eda80059)
 ![Image](https://github.com/user-attachments/assets/1cf8714f-59b4-48a7-bbb5-30f066ed14e5)
-
-## Author's Notes
     
-### Project Structure
+## Project Structure
 The codebase is organized into several modules:
 
   * Game.py handles main game mechanics, difficulty, traversing menu screens
@@ -87,6 +85,8 @@ The codebase is organized into several modules:
   * DoublyLinkedStack.py is the data structure used for menu traversal
   * InputBox.py handles a text input box used for location selection
 
+  * audio, font, and images folders store audio files, fonts, and image files respectively
+  * SavedGameData folder saves player_data file used for retrieve saved player information
 ## Credits
 
 Sprite Assets:

@@ -17,7 +17,7 @@ class SpaceGame:
     spawning/despawning of asteroids/treasure/powerups, music, and weather-based mechanics.
     The game's difficulty get's increasingly difficult as the game runs; SpaceGame()
     uses an API to adapt difficulty based on temperature and wind speed data of
-    irl cities. Colder temperatures spawn more icy asteroids, hotter temperatures spawn
+    irl locations. Colder temperatures spawn more icy asteroids, hotter temperatures spawn
     fiery ones.
     """
 
@@ -29,16 +29,16 @@ class SpaceGame:
 
         # Weather-based difficulty parameters
         previous_save = GameSaver.load_gamesave_file()
-        self._game_temperature_custom = previous_save["City temperature"]
-        self._max_speed_range_custom = previous_save["City wind speed range"]
-        self._city_custom = previous_save["City selected"]
+        self._game_temperature_custom = previous_save["Location temperature"]
+        self._max_speed_range_custom = previous_save["Location wind speed range"]
+        self._location_custom = previous_save["Location"]
 
         # Default difficulty parameters as a failsafe
-        # Based on the city, there is a default speed rand to use
+        # Based on the location, there is a default speed rand to use
         # Save the max speed list copy in order to prevent reference errors
         self._max_speed_range_default = self._max_speed_range_custom[:]
         self._game_temperature_default = self._game_temperature_custom
-        self._city_default = self._city_custom
+        self._location_default = self._location_custom
 
         # Progressive difficulty spawning and speed range difficulty cycles
         self._asteroid_spawning_level = 0
@@ -82,7 +82,7 @@ class SpaceGame:
         # Used for random name generation for leaderboard entries
         self._char_string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-        # Input box positioned near difficulty button for city input
+        # Input box positioned near difficulty button for location input
         self._user_input_box = GameInputBox.InputBox(
             pyray.Vector2(Settings.ADJUSTED_WIDTH / 2 - 240 * Settings.SCALE_FACTOR, 250 * Settings.SCALE_FACTOR), Assets.game_assets.get_asset_font("slkscr.ttf"), 
             30 * Settings.SCALE_FACTOR, 470 * Settings.SCALE_FACTOR, 60 * Settings.SCALE_FACTOR, 18, raylib.RED, raylib.WHITE, raylib.BLACK,
@@ -171,7 +171,7 @@ class SpaceGame:
     def reset_difficulty(self):
         """
         Reset the asteroid spawn and speed difficulty levels.
-        Set the speed range diffcult to the base speed dependent on the city.
+        Set the speed range diffcult to the base speed dependent on the location.
         """
         
         # Use a copy to prevent reference problems
@@ -764,35 +764,35 @@ class SpaceGame:
         """Checks if user has clicked exit button."""
         return self._menu._exit_clicked
 
-    def change_game_difficulty(self, city, use_mock=False):
+    def change_game_difficulty(self, location, use_mock=False):
         """
         Weather API integration that modifies game difficulty based on
         real-world weather data. Temperature affects asteroid types,
         while wind speed affects asteroid movement speed.
 
-        Falls back to defaults if city data cannot be retrieved.
+        Falls back to defaults if location data cannot be retrieved.
 
-        city should be in the format of "42.1,61.2"
+        location should be in the format of "42.1,61.2"
         """
 
-        city_formatted = city.split(",")
+        location_formatted = location.split(",")
 
-        if len(city_formatted) != 2:
-            self._city_custom = self._city_default
+        if len(location_formatted) != 2:
+            self._location_custom = self._location_default
             self._game_temperature_custom = self._game_temperature_default
             self._max_speed_range_custom = self._max_speed_range_default[:]
         else:
             if use_mock:
-                city_data = WeatherApiFake.get_city_temp_wspd(city_formatted[0], city_formatted[1])
+                location_data = WeatherApiFake.get_location_lat_long_temp_wspd(location_formatted[0], location_formatted[1])
             else:
-                city_data = WeatherApi.get_city_temp_wspd(city_formatted[0], city_formatted[1])
+                location_data = WeatherApi.get_location_lat_long_temp_wspd(location_formatted[0], location_formatted[1])
 
-            if "temperature" in city_data and "windspeed" in city_data:
+            if "temperature" in location_data and "windspeed" in location_data:
 
                 # Scale wind speed to appropriate game speed range
-                wind_speed_range = [city_data["windspeed"] * 100 + 1, city_data["windspeed"] * 100 + 50]
-                self._city_custom = city
-                self._game_temperature_custom = city_data["temperature"]
+                wind_speed_range = [location_data["windspeed"] * 100 + 1, location_data["windspeed"] * 100 + 50]
+                self._location_custom = location
+                self._game_temperature_custom = location_data["temperature"]
                 self._max_speed_range_custom = wind_speed_range
                 # Store a list with the same data, but don't let them reference each other
                 self._max_speed_range_default = wind_speed_range[:]
@@ -800,7 +800,7 @@ class SpaceGame:
 
             else:
                 # Fallback to defaults if API call fails
-                self._city_custom = self._city_default
+                self._location_custom = self._location_default
                 self._game_temperature_custom = self._game_temperature_default
                 self._max_speed_range_custom = self._max_speed_range_default[:]
 
@@ -830,9 +830,9 @@ class SpaceGame:
 
             pyray.end_drawing()
 
-        # store the games data to be saved (city data, player leaderboard)
-        saved_data = {"Game Leaderboard": self._menu._leaderboard, "City selected": self._city_custom, "City temperature": self._game_temperature_custom, 
-                    "City wind speed range": self._max_speed_range_custom}
+        # store the games data to be saved (location data, player leaderboard)
+        saved_data = {"Game Leaderboard": self._menu._leaderboard, "Location": self._location_custom, "Location temperature": self._game_temperature_custom, 
+                    "Location wind speed range": self._max_speed_range_custom}
 
         GameSaver.save_game_data_file(saved_data)
 
@@ -864,24 +864,24 @@ class SpaceGame:
         """
         self._menu.run_options_menu()
         self._menu.draw_difficulty_information(
-            self._city_custom, str(self._game_temperature_custom), str(self._max_speed_range_custom) 
+            self._location_custom, str(self._game_temperature_custom), str(self._max_speed_range_custom) 
         )
 
         if self._menu._difficulty_clicked:
             # Only display the input box if the difficulty button hasn't been clicked
             self._user_input_box.enable_input_box()
             if self._user_input_box._enter_is_pressed:
-                city_typed = self._user_input_box._text_to_save
-                self.change_game_difficulty(city_typed, False)
+                location_typed = self._user_input_box._text_to_save
+                self.change_game_difficulty(location_typed, False)
                 self._user_input_box.reset_input_box()
 
         # Erase save data upon button click
         if self._menu._erase_file_clicked:
-            # Reset games leaderboard, and city data displays in-game as well
+            # Reset games leaderboard, and location data displays in-game as well
             self._game_temperature_custom = 55
             self._max_speed_range_custom = [200, 250]
             self._max_speed_range_default = [200, 250]
-            self._city_custom = "Default"
+            self._location_custom = "Default"
             self._menu._leaderboard = []
             self._menu._erase_file_clicked = False
 

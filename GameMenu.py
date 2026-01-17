@@ -115,16 +115,16 @@ class Menu:
         centered_title_width = (ADJUSTED_WIDTH - title_text_dimensions.x) * SCALE_FACTOR / 2 
         draw_text_ex(game_assets.get_asset_font("slkscreb.ttf"), self._title, Vector2(centered_title_width, 120 * SCALE_FACTOR), 50 * SCALE_FACTOR, 0, WHITE)
 
-    def draw_difficulty_information(self, city, temp, speed):
+    def draw_difficulty_information(self, location, temp, speed):
         """
-        Displays difficulty settings (city, temperature, and speed range) in the options menu.
-        city (str): The name of the selected city.
+        Displays difficulty settings (location, temperature, and speed range) in the options menu.
+        location (str): The lat,long information of the selected location.
         temp (str): The temperature in Fahrenheit.
         speed (str): The speed range selected.
         """
         draw_text_ex(
             game_assets.get_asset_font("slkscreb.ttf"),
-            "Location: " + city,
+            "Location: " + location,
             Vector2(self._buttons["difficulty"].get_button_position().x * SCALE_FACTOR - 20, 340 * SCALE_FACTOR),
             35 * SCALE_FACTOR,
             0,

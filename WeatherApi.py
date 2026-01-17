@@ -12,9 +12,10 @@ if not apikey:
 
 """
 This API parses data from a weather information database. This implementation specifically retreives 
+temperature and windspeed information from a latitute,longitude location specified
 """
 
-def get_city_temp_wspd(lat, long):
+def get_location_lat_long_temp_wspd(lat, long):
 
     # ensures parameters represent integers or float strings, which are required to query
     try:
@@ -38,12 +39,12 @@ def get_city_temp_wspd(lat, long):
         return {"error": "Failed to fetch data. Please try again later."}
 
     weather = response.json()
-    city_data_to_return = {"temperature" : math.ceil(weather['data'][0]['temp']), "windspeed" : math.ceil(weather['data'][0]['wind_spd']), "city_name" : weather['data'][0]['city_name']}
+    location_data_to_return = {"temperature" : math.ceil(weather['data'][0]['temp']), "windspeed" : math.ceil(weather['data'][0]['wind_spd']), "city_name" : weather['data'][0]['city_name']}
 
-    return city_data_to_return
+    return location_data_to_return
 
 if __name__ == "__main__":
     lat, long = "42.7", "-73.2"
-    print(get_city_temp_wspd(lat, long))
+    print(get_location_lat_long_temp_wspd(lat, long))
 
 

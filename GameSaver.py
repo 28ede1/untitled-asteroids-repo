@@ -4,8 +4,8 @@ import os
 
 
 """
-Data to be saved is game difficulty (which uses city, city temperature
-and city windspeed), as well as the game's leaderboard. At first, these 
+Data to be saved is game difficulty (which uses location, location temperature
+and location windspeed), as well as the game's leaderboard. At first, these 
 are the defaults to use before any save file has been used.
 """
 
@@ -39,9 +39,9 @@ def load_gamesave_file():
     else:
         data = {
             "Game Leaderboard": [],
-            "City selected": "Default",
-            "City temperature": 55,
-            "City wind speed range": [200, 250],
+            "Location": "Default",
+            "Location temperature": 55,
+            "Location wind speed range": [200, 250],
         }
         return data
 
@@ -50,5 +50,5 @@ def erase_game_save_file():
     """
     Erases all data in the dictionary by setting each key's value to the defaults. Returns a fresh dictionary.
     """
-    fresh_data = {"Game Leaderboard": [], "City selected": "Default", "City temperature": 65, "City wind speed range": [200, 250]}
+    fresh_data = {"Game Leaderboard": [], "Location": "Default", "Location temperature": 65, "Location wind speed range": [200, 250]}
     return fresh_data

@@ -76,7 +76,7 @@ capital_weather_data = {
 }
 
 
-def get_city_temp_wspd(lat, long):
+def get_location_lat_long_temp_wspd(lat, long):
 
     if (lat, long) in capital_weather_data:
         city_data = capital_weather_data[(lat, long)]
@@ -87,4 +87,4 @@ def get_city_temp_wspd(lat, long):
 
 if __name__ == "__main__":
     lat, long = "42", "50"
-    print(get_city_temp_wspd(lat, long))
+    print(get_location_lat_long_temp_wspd(lat, long))
