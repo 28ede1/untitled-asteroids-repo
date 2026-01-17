@@ -1,0 +1,5 @@
+raylib==5.5.0.2
+cffi==1.17.1
+pycparser==2.22
+python-dotenv==1.2.1
+
