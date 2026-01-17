@@ -6,7 +6,7 @@ A retro-styled Asteroids game clone where you survive as long as possible avoidi
 
   * Knowledge of Object-Oriented Programming, Inheritance, File Processing, Data Strutures, and Game-Loop logic
   * Knowledge of utilizing API's
-  * WeatherApi (https://rapidapi.com/oktamovshohjahon/api/weather-api138/playground/apiendpoint_acb2971f-25d4-4a29-b5d6-87b9f3f8131b)
+  * WeatherApi (https://rapidapi.com/weatherbit/api/weather/playground/5933364be4b08ab68dbc3786)
   * Python, installed with the pip package
   * pyray, raylib, pygbag, requests libraries installed
   * Dependencies: cffi, pycparser, idna, certifi, urllib3, charset-normalizer
