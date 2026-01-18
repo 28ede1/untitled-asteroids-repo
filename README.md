@@ -4,7 +4,7 @@ Asteroids game clone where you survive as long as possible avoiding asteroids wh
 
 ## Requirements
     
-  * Python 3.9+
+  * Python 3.9+ (seems to work best for python 3.12)
 
 ## Installation/Setup
 
