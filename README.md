@@ -1,29 +1,43 @@
 # An Untitled Asteroids Game
 
-Asteroids game clone where you survive as long as possible avoiding asteroids while collecting powerups to keep you alive and treasure to increase your score.
+Survive as long as possible: dodge falling asteroids, shoot them down, and collect powerups and treasure to stay alive and climb the leaderboard.
 
-## Requirements
-    
-  * Python 3.9+ (seems to work best for python 3.12)
+*Built from scratch in Python with raylib. Highlights: a custom doubly-linked-stack menu system, weather-API-driven dynamic difficulty (with an offline fallback), and JSON save/load with a persistent top-5 leaderboard.*
 
-## Installation/Setup
+## Demo
 
-  * git clone this_repository
-  * cd untitled-asteroids-repo
-  * pip install -r requirements.txt
-  * get weather api key from https://rapidapi.com/weatherbit/api/weather/playground/5933364be4b08ab68dbc3786
-  * create .env file in project_root and set WEATHER_API_KEY=your_api_key
+[![Watch the gameplay demo](https://img.youtube.com/vi/HkXz9sZ7LCc/maxresdefault.jpg)](https://youtu.be/HkXz9sZ7LCc)
 
-## To run
+*(click for a full gameplay video)*
 
+![Gameplay screenshot](https://github.com/user-attachments/assets/81c6e9b8-80dc-4d3a-8df3-12543938e3e9)
+
+## Quick Start
+
+Requires Python 3.9–3.12. No account or API key needed.
+
+```bash
+git clone <this repository>
+cd untitled-asteroids-repo
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
 python Game.py
+```
+
+### Optional: live weather difficulty
+
+The Difficulty option can pull real-world temperature and wind speed for a location you enter. Without a key, it automatically uses built-in offline data, so the game is fully playable with no setup.
+
+To enable live weather:
+  1. Get a free RapidAPI key for the [Weatherbit API](https://rapidapi.com/weatherbit/api/weather).
+  2. Create a `.env` file in the project root containing: `WEATHER_API_KEY=your_api_key`
+
+## Controls
+
+  * **Move** — Arrow Keys
+  * **Shoot** — Spacebar
 
 ## Core Gameplay
-
-### Game Controls
-
-  * Move Player - Arrow Keys
-  * Shoot Asteroid - Spacebar
 
 #### Asteroids
 Asteroids spawn randomly from the top of the screen and fall to the bottom of the screen at different times. Asteroids come in three types: Normal (Deals regular damage to the player upon collision), Icy (Deals less damage but freezes the player for a brief period), Fiery (Deals more damage to the player).
@@ -47,9 +61,9 @@ the types of asteroids that spawn, and the wind speed is used to determine the s
 
 A weather API collects temperature and wind speed information for a latitude, longitude location entered by the player through the Difficulty button in the options menu. The temperature is used to modify the distribution of asteroid types, simulating weather-impact on asteroid spawning. The wind speed influences the default speed at which asteroids spawn.
 
-#### Weather "Api" (fake version)
+#### Weather API (offline mock)
 
-Contains seperate function for retrieving location temperature and windspeed from latitute and longitude parameters. Meant to mock the main WeatherAPI get method.
+`WeatherApiFake.py` retrieves location temperature and wind speed from latitude/longitude parameters using built-in data, mirroring the main WeatherAPI method. It lets difficulty selection work with no key or network, and is used automatically when no API key is configured.
 
 #### Save/Load Feature
 
@@ -59,35 +73,33 @@ The game includes a save/load feature that allows players to save their difficul
 
 Upon death, the player’s time survived and points are recorded in a leaderboard, which tracks the top 5 scores.
 
-## Gameplay Demo 
+## More Screenshots
 
-[![Video Title](https://img.youtube.com/vi/HkXz9sZ7LCc/maxresdefault.jpg)](https://youtu.be/HkXz9sZ7LCc) 
+![Screenshot](https://github.com/user-attachments/assets/0e654e30-d04c-42c6-be5e-627beb832cf3)
+![Screenshot](https://github.com/user-attachments/assets/b6ba0ef1-a3fa-4aff-9524-1819eda80059)
+![Screenshot](https://github.com/user-attachments/assets/1cf8714f-59b4-48a7-bbb5-30f066ed14e5)
 
-## Screenshots 
-
-![Image](https://github.com/user-attachments/assets/81c6e9b8-80dc-4d3a-8df3-12543938e3e9)
-![Image](https://github.com/user-attachments/assets/0e654e30-d04c-42c6-be5e-627beb832cf3)
-![Image](https://github.com/user-attachments/assets/b6ba0ef1-a3fa-4aff-9524-1819eda80059)
-![Image](https://github.com/user-attachments/assets/1cf8714f-59b4-48a7-bbb5-30f066ed14e5)
-    
 ## Project Structure
 The codebase is organized into several modules:
 
-  * Game.py handles main game mechanics, difficulty, traversing menu screens
-  * Sprites.py contains classes for game entities
-  * WeatherApi.py handles API calls for weather data
-  * WeatherApiFake.py handles getting a location weather data as a mock for WeatherApi.py
-  * MyTimer.py handles timers used for various game/player mechanics
-  * Assets.py manages the loading of textures (including sound, music)
-  * Settings.py has constants used by the other python files
-  * GameSaver.py handles game saving/loading/erasing of player data
-  * GameMenu.py handles content displayed for each menu screen
-  * DoublyLinkedStack.py is the data structure used for menu traversal
-  * InputBox.py handles a text input box used for location selection
+  * `Game.py` — main game mechanics, difficulty, and menu-screen navigation
+  * `Sprites.py` — classes for game entities
+  * `WeatherApi.py` — API calls for real weather data
+  * `WeatherApiFake.py` — offline mock of `WeatherApi.py` for location weather data
+  * `MyTimer.py` — timers used for various game/player mechanics
+  * `Assets.py` — loading of textures, sound, and music
+  * `Settings.py` — constants shared across the other modules
+  * `GameSaver.py` — saving, loading, and erasing of player data
+  * `GameMenu.py` — content displayed for each menu screen
+  * `DoublyLinkedStack.py` — data structure used for menu traversal
+  * `GameInputBox.py` — text input box used for location selection
 
-  * audio, font, and images folders store audio files, fonts, and image files respectively
-  * SavedGameData folder saves player_data file used for retrieve saved player information
+  * `audio`, `font`, and `images` folders store audio files, fonts, and image files respectively
+  * `SavedGameData` folder holds the `player_data` file used to persist saved player information
 ## Credits
+
+<details>
+<summary>Sprite and audio asset credits</summary>
 
 Sprite Assets:
 
@@ -120,3 +132,5 @@ Sprite Assets:
   * Menu Button by Leszek_Szary,  https://pixabay.com/sound-effects/menu-button-88360/
 
   * Breaking Glass by wjl, https://pixabay.com/sound-effects/breaking-glass-84819/
+
+</details>
