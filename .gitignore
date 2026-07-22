@@ -1,3 +1,5 @@
 .env
 __pycache__
-SavedGameData/
+.venv/
+# Ignore personal save data, but keep the folder itself (via .gitkeep) so fresh clones work
+SavedGameData/player_data.txt

@@ -29,21 +29,26 @@ def load_gamesave_file():
     and returns the resulting dictionary. If the file is empty, return defaults.
     """
     save_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "SavedGameData/player_data.txt"))
-    
-    # If the file has data in it, return said data 
-    if os.path.getsize(save_file_path) > 0:
-        with open(save_file_path) as game_save_file:
-            return json.load(game_save_file)
-        
+
+    data = {
+        "Game Leaderboard": [],
+        "Location": "Default",
+        "Location temperature": 55,
+        "Location wind speed range": [200, 250],
+    }
+
+    # If the file exists and has data in it, return said data.
+    # A fresh clone won't have the file (it's gitignored), so fall back to defaults.
+    if os.path.exists(save_file_path) and os.path.getsize(save_file_path) > 0:
+        try:
+            with open(save_file_path) as game_save_file:
+                return json.load(game_save_file)
+        except (json.JSONDecodeError, ValueError):
+            # Corrupt save file: fall back to defaults rather than crashing
+            return data
+
     # Return defaults
-    else:
-        data = {
-            "Game Leaderboard": [],
-            "Location": "Default",
-            "Location temperature": 55,
-            "Location wind speed range": [200, 250],
-        }
-        return data
+    return data
 
 
 def erase_game_save_file():

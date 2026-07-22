@@ -872,7 +872,9 @@ class SpaceGame:
             self._user_input_box.enable_input_box()
             if self._user_input_box._enter_is_pressed:
                 location_typed = self._user_input_box._text_to_save
-                self.change_game_difficulty(location_typed, False)
+                # Use the real weather API only if a key is configured; otherwise
+                # fall back to the offline mock so the game works with no setup.
+                self.change_game_difficulty(location_typed, use_mock=not WeatherApi.API_KEY_AVAILABLE)
                 self._user_input_box.reset_input_box()
 
         # Erase save data upon button click

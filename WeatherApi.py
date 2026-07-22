@@ -7,15 +7,21 @@ import math
 load_dotenv()
 apikey = os.getenv("WEATHER_API_KEY")
 
-if not apikey:
-    raise RuntimeError("API_KEY is not set")
+# Whether a real weather API key is configured. When False, the game falls back
+# to the offline WeatherApiFake so it can run with zero setup.
+API_KEY_AVAILABLE = bool(apikey)
 
 """
-This API parses data from a weather information database. This implementation specifically retreives 
+This API parses data from a weather information database. This implementation specifically retreives
 temperature and windspeed information from a latitute,longitude location specified
 """
 
 def get_location_lat_long_temp_wspd(lat, long):
+
+    # Without a configured key we can't query the real API; signal an error so
+    # callers fall back to defaults (or the offline mock).
+    if not apikey:
+        return {"error": "WEATHER_API_KEY is not set"}
 
     # ensures parameters represent integers or float strings, which are required to query
     try:

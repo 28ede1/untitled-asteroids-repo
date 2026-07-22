@@ -1,1 +1,0 @@
-{"Game Leaderboard": [], "Location": "Default", "Location temperature": 55, "Location wind speed range": [200, 250]}
